@@ -4,6 +4,7 @@ from flask import json
 from urllib.request import urlopen
 from werkzeug.utils import secure_filename   
 import sqlite3 
+import requests
 
 app = Flask(__name__)                                                                                                                  
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'  # Clé secrète pour les sessions  
@@ -11,6 +12,33 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'  # Clé secrète pour les sessions
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
+
+
+# /debrid?apikey=%s&link=%s
+@app.route('/debrid')
+def debrid():
+    apikey = request.args.get('apikey')
+    link = request.args.get('link')
+
+
+    if not 'alldebrid' in link and not '1fichier' in link:
+        return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}}), 400
+
+#	url = "http://api.alldebrid.com/v4/link/unlock?agent=vStreamRedirect&apikey=%s&link=%s"
+	url = "http://api.alldebrid.com/v4/link/unlock"
+    params = {
+        "agent": vStreamRedirect,
+        "apikey": apikey,
+        "link": link
+    }
+    
+    # Envoi de la requête GET avec paramètres
+    response = requests.get(url, params=params)
+    
+    data = response.json()
+
+    return jsonify(data)
+
 
 @app.route('/lecture')
 def lecture():
