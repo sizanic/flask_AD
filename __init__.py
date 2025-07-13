@@ -33,9 +33,7 @@ def debrid():
     
     # Envoi de la requête GET avec paramètres
     response = requests.get(url, params=params)
-    
     data = response.json()
-
     return jsonify(data)
 
 
