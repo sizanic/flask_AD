@@ -20,7 +20,6 @@ def debrid():
     apikey = request.args.get('apikey')
     link = request.args.get('link')
 
-
     if not 'alldebrid' in link and not '1fichier' in link:
         return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}}), 400
 
