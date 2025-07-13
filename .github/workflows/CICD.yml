@@ -28,8 +28,8 @@ jobs:
             git clone https://github.com/sizanic/flask_AD.git
             # git clone https://github.com/${{ github.repository }}.git
             # Vérifier si le répertoire de destination existe
-            if [ "$(ls -A ./flask)" ]; then
-              rsync -r ./$last_directory/ ./flask
+            if [ "$(ls -A ./flask_AD)" ]; then
+              rsync -r ./$last_directory/ ./flask_AD
               rm -rf ./$last_directory
             else
               echo "Le répertoire flask de destination sur votre serveur n'existe pas"
