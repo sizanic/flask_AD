@@ -24,7 +24,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             last_directory=$(basename ${{ runner.workspace }})
-            cd $HOME/www
+            cd $HOME
             # git clone https://github.com/sizanic/flask_AD.git
             git clone https://github.com/${{ github.repository }}.git
             # Vérifier si le répertoire de destination existe
