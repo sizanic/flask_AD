@@ -23,16 +23,19 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            last_directory=$(basename ${{ runner.workspace }})
+            # Cloner dans un dossier temporaire unique
+            temp_dir=$(basename ${{ runner.workspace }})
             cd $HOME/www
             # git clone https://github.com/sizanic/flask_AD.git
-            git clone https://github.com/${{ github.repository }}.git
+            git clone https://github.com/${{ github.repository }}.git $temp_dir
             # Vérifier si le répertoire de destination existe
-            if [ "$(ls -A ./flask_AD)" ]; then
-              rsync -r ./$last_directory/ ./flask_AD
-              rm -rf ./$last_directory
+            if [ -d "flask_AD" ]; then
+              rsync -a --delete "$tmp_dir/" "flask_AD/"
+              rm -rf "$tmp_dir"
+              echo "✅ Code mis à jour dans flask_AD"
             else
-              echo "Le répertoire flask de destination sur votre serveur n'existe pas"
+              echo "❌ Le répertoire flask_AD n'existe pas"
+              rm -rf "$tmp_dir"
               exit 1
             fi
   Restart:
