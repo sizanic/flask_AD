@@ -3,19 +3,37 @@ import requests
 
 app = Flask(__name__)                                                                                                                  
 
+API_KEYS = deque([
+    "JpldxPIQ8ng7camNNH3n",        # sizanic         // OK  26/07/2025 19:35
+    "je5gAJSBwdYRTKGUuJA7",        # vPasteStream    // OK  01/09/2025 03:50
+    "TKftCdvxhrU2abyNnpNQ"         # clyrkakenta     // OK  09/08/2025 12:16 (shanbox.izanic)
+])
+last_request_time = time.time()
+
 @app.route('/')
 def hello_world():
     return render_template('hello.html')
 
 
 # /debrid?apikey=%s&link=%s
-@app.route('/debrid')
-def debrid():
+@app.route('/debrid', methods=['GET'])
+def debrid()
+    global last_request_time
     apikey = request.args.get('apikey')
     link = request.args.get('link')
 
     if not link or (not 'alldebrid' in link and not '1fichier' in link):
         return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}}), 400
+
+    time_per_key = 46 / len(API_KEYS)
+    now = time.time()
+    if now - last_request_time < time_per_key:
+        last_request_time += time_per_key
+        time.sleep(time_per_key - (now - last_request_time))
+    else:
+        last_request_time = now
+
+    apikey = API_KEYS.popleft()
 
 #	url = "http://api.alldebrid.com/v4/link/unlock?agent=vStreamRedirect&apikey=%s&link=%s"
     url = "http://api.alldebrid.com/v4/link/unlock"
@@ -26,7 +44,15 @@ def debrid():
     }
     
     # Envoi de la requête GET avec paramètres
-    response = requests.get(url, params=params)
-    data = response.json()
+    try:
+        response = requests.get(url, params=params)
+        if any(error in response.text for error in ["AUTH_USER_BANNED", "AUTH_BAD_APIKEY", "MUST_BE_PREMIUM"]):
+            return debrid()  # réessaie avec une autre clé
+        API_KEYS.append(apikey)    # on replace la key à la fin car elle est toujours valide
+        data = response.json()
+    except Exception as e:
+        API_KEYS.append(apikey)
+        return jsonify({"status": "error", "message": str(e)})
+
     return jsonify(data)
 
