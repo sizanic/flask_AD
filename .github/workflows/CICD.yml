@@ -30,7 +30,7 @@ jobs:
             # Vérifier si le répertoire de destination existe
             if [ "$(ls -A ./flask_AD)" ]; then
               rsync -r ./$last_directory/ ./flask_AD
-              # rm -rf ./$last_directory
+              rm -rf ./$last_directory
             else
               echo "Le répertoire flask de destination sur votre serveur n'existe pas"
               exit 1
