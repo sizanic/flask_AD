@@ -33,7 +33,7 @@ jobs:
               echo "📁 Répertoire flask_AD détecté, synchronisation..."
 
               # Nettoyage de fichiers inaccessibles pour éviter les erreurs rsync
-              sudo find flask_AD/run/systemd -type d -exec chmod +x {} \; || true
+              # sudo find flask_AD/run/systemd -type d -exec chmod +x {} \; || true
   
               # Copier le contenu sans passer par les fichiers systèmes sensibles
               # Synchronisation en excluant les fichiers sensibles
