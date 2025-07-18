@@ -23,33 +23,35 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            # Cloner dans un dossier temporaire unique
-            tmp_dir=$(basename ${{ runner.workspace }})
             cd $HOME/www
             # git clone https://github.com/sizanic/flask_AD.git
-            git clone https://github.com/${{ github.repository }}.git $tmp_dir
             # Vérifier si le répertoire de destination existe
             if [ -d "flask_AD" ]; then
-              echo "📁 Répertoire flask_AD détecté, synchronisation..."
+              # Cloner dans un dossier temporaire unique
+              tmp_dir=$(basename ${{ runner.workspace }})
+
+              git clone https://github.com/${{ github.repository }}.git $tmp_dir
+              echo "Répertoire flask_AD détecté, synchronisation..."
 
               # Synchronisation en excluant les fichiers sensibles
               rsync -a --delete --exclude='run/' --exclude='*.pyc' --exclude='__pycache__/' "$tmp_dir/" "flask_AD/"
 
               # Nettoyage de fichiers inaccessibles pour éviter les erreurs rsync
               # sudo find flask_AD/run/systemd -type d -exec chmod +x {} \; || true
-              echo "${{ secrets.PASSWORD }}" | sudo -S find flask_AD -type d -exec chmod +x {} \;
+              # echo "${{ secrets.PASSWORD }}" | sudo -S find flask_AD -type d -exec chmod +x {} \;
 
               # Copier le contenu sans passer par les fichiers systèmes sensibles
               #              rsync -a --exclude='run/systemd' --delete "$tmp_dir/" "flask_AD/"
   
-              echo "✅ Mise à jour terminée"
+              # Nettoyage
+              rm -rf "$tmp_dir"
+              echo "Mise à jour terminée"
             else
-              echo "❌ Le répertoire flask_AD n'existe pas"
+              echo "Le répertoire flask_AD n'existe pas"
+              git clone https://github.com/${{ github.repository }}.git ${{ github.repository }}
             fi
             
-            # Nettoyage
-            echo "${{ secrets.PASSWORD }}" | sudo -S chmod -R u+rwX flask_AD/
-            rm -rf "$tmp_dir"
+            #echo "${{ secrets.PASSWORD }}" | sudo -S chmod -R u+rwX flask_AD/
   Restart:
     needs: Copy
     runs-on: ubuntu-latest
