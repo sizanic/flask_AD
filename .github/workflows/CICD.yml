@@ -24,10 +24,10 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             # Cloner dans un dossier temporaire unique
-            temp_dir=$(basename ${{ runner.workspace }})
+            tmp_dir=$(basename ${{ runner.workspace }})
             cd $HOME/www
             # git clone https://github.com/sizanic/flask_AD.git
-            git clone https://github.com/${{ github.repository }}.git $temp_dir
+            git clone https://github.com/${{ github.repository }}.git $tmp_dir
             # Vérifier si le répertoire de destination existe
             if [ -d "flask_AD" ]; then
               rsync -a --delete "$tmp_dir/" "flask_AD/"
