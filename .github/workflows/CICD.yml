@@ -36,7 +36,9 @@ jobs:
               sudo find flask_AD/run/systemd -type d -exec chmod +x {} \; || true
   
               # Copier le contenu sans passer par les fichiers systèmes sensibles
-              rsync -a --exclude='run/systemd' --delete "$tmp_dir/" "flask_AD/"
+              # Synchronisation en excluant les fichiers sensibles
+              rsync -a --exclude='run/' --exclude='*.pyc' --exclude='__pycache__/' "$tmp_dir/" "flask_AD/"
+              #              rsync -a --exclude='run/systemd' --delete "$tmp_dir/" "flask_AD/"
   
               # Nettoyage
               rm -rf "$tmp_dir"
