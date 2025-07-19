@@ -6,7 +6,8 @@ app = Flask(__name__)
 API_KEYS = deque([
     "JpldxPIQ8ng7camNNH3n",        # sizanic         // OK  26/07/2025 19:35
     "je5gAJSBwdYRTKGUuJA7",        # vPasteStream    // OK  01/09/2025 03:50
-    "TKftCdvxhrU2abyNnpNQ"         # clyrkakenta     // OK  09/08/2025 12:16 (shanbox.izanic)
+    "TKftCdvxhrU2abyNnpNQ",        # clyrkakenta     // OK  09/08/2025 12:16 (shanbox.izanic)
+    "b1OCt4ztYysJ7Av8tHf6"
 ])
 last_request_time = time.time()
 
@@ -17,7 +18,7 @@ def hello_world():
 
 # /debrid?apikey=%s&link=%s
 @app.route('/debrid', methods=['GET'])
-def debrid()
+def debrid():
     global last_request_time
     apikey = request.args.get('apikey')
     link = request.args.get('link')
