@@ -16,6 +16,8 @@ from datetime import datetime
 
 app = Flask(__name__)                                                                                                                  
 
+LOG = deque()
+
 API_KEYS = deque([
 #    "je5gAJSBwdYRTKGUuJA7",        # vPasteStream    // OK  01/09/2025 03:50
 #    "TKftCdvxhrU2abyNnpNQ",        # clyrkakenta     // OK  09/08/2025 12:16 (shanbox.izanic)
@@ -24,9 +26,13 @@ API_KEYS = deque([
 ])
 last_request_time = time.time()
 
+
+   
 @app.route('/')
 def hello_world():
-    return render_template('hello.html')
+    return LOG
+
+    #render_template('hello.html')
 
 
 # /debrid?apikey=%s&link=%s
@@ -59,13 +65,16 @@ def debrid():
     
     # Envoi de la requête GET avec paramètres
     try:
+        LOG.append('%s - %s' % (now, apikey))
         response = requests.get(url, params=params)
         if any(error in response.text for error in ["AUTH_USER_BANNED", "AUTH_BAD_APIKEY", "MUST_BE_PREMIUM"]):
+            LOG.append('%s - %s -> %S' % (now, apikey, response.text))
             return debrid()  # réessaie avec une autre clé
         API_KEYS.append(apikey)    # on replace la key à la fin car elle est toujours valide
         data = response.json()
     except Exception as e:
         API_KEYS.append(apikey)
+        LOG.append('%s -> %s' % (now, str(e)))
         return jsonify({"status": "error", "message": str(e)})
 
     return jsonify(data)
