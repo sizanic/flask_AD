@@ -30,10 +30,9 @@ last_request_time = time.time()
    
 @app.route('/')
 def hello_world():
-    return str(LOG)
+    return "\r\n ".join(LOG)
 
     #render_template('hello.html')
-
 
 # /debrid?apikey=%s&link=%s
 @app.route('/debrid', methods=['GET'])
@@ -42,11 +41,13 @@ def debrid():
     #apikey = request.args.get('apikey')
     link = request.args.get('link')
 
+    now = time.time()
     if not link or (not 'alldebrid' in link and not '1fichier' in link):
+        formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
+        LOG.append('%s - redirect %s' % (formatted_time, link)
         return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}}), 400
 
     time_per_key = 46 / len(API_KEYS)
-    now = time.time()
     if now - last_request_time < time_per_key:
         last_request_time += time_per_key
         time.sleep( last_request_time - now)
@@ -65,16 +66,19 @@ def debrid():
     
     # Envoi de la requête GET avec paramètres
     try:
-        LOG.append('%s - %s' % (now, apikey))
+        formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
+        LOG.append('%s - %s' % (formatted_time, apikey))
         response = requests.get(url, params=params)
         if any(error in response.text for error in ["AUTH_USER_BANNED", "AUTH_BAD_APIKEY", "MUST_BE_PREMIUM"]):
-            LOG.append('%s - %s -> %S' % (now, apikey, response.text))
+            formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
+            LOG.append('%s - %s -> %S' % (formatted_time, apikey, response.text))
             return debrid()  # réessaie avec une autre clé
         API_KEYS.append(apikey)    # on replace la key à la fin car elle est toujours valide
         data = response.json()
     except Exception as e:
         API_KEYS.append(apikey)
-        LOG.append('%s -> %s' % (now, str(e)))
+        formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
+        LOG.append('%s -> %s' % (formatted_time, str(e)))
         return jsonify({"status": "error", "message": str(e)})
 
     return jsonify(data)
