@@ -60,8 +60,8 @@ def debrid():
     # Envoi de la requête GET avec paramètres
     try:
         response = requests.get(url, params=params)
-        if any(error in response.text for error in ["AUTH_USER_BANNED", "AUTH_BAD_APIKEY", "MUST_BE_PREMIUM"]):
-            return debrid()  # réessaie avec une autre clé
+        #if any(error in response.text for error in ["AUTH_USER_BANNED", "AUTH_BAD_APIKEY", "MUST_BE_PREMIUM"]):
+            #return debrid()  # réessaie avec une autre clé
         API_KEYS.append(apikey)    # on replace la key à la fin car elle est toujours valide
         data = response.json()
     except Exception as e:
