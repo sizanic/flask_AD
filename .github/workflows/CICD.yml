@@ -28,7 +28,8 @@ jobs:
             # Vérifier si le répertoire de destination existe
             if [ -d "flask_AD" ]; then
               # Cloner dans un dossier temporaire unique
-              tmp_dir=$(basename ${{ runner.workspace }})
+              #tmp_dir=$(basename ${{ runner.workspace }})
+              tmp_dir="deploy_tmp_$(date +%s)"
 
               git clone https://github.com/${{ github.repository }}.git $tmp_dir
               echo "Répertoire flask_AD détecté, synchronisation..."
