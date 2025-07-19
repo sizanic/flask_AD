@@ -30,7 +30,7 @@ last_request_time = time.time()
    
 @app.route('/')
 def hello_world():
-    return "\r\n ".join(LOG)
+    return "<br>".join(LOG)
 
     #render_template('hello.html')
 
