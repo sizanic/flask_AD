@@ -45,7 +45,7 @@ def debrid():
     if not link or (not 'alldebrid' in link and not '1fichier' in link):
         formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
         LOG.append('%s - redirect %s' % (formatted_time, link))
-        return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}}), 400
+        return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}})
 
     time_per_key = 46 / len(API_KEYS)
     if now - last_request_time < time_per_key:
