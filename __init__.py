@@ -43,7 +43,7 @@ def debrid():
 
     now = time.time()
     if not link or (not 'alldebrid' in link and not '1fichier' in link):
-        formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
+        formatted_time = datetime.fromtimestamp(now).strftime('%d-%m-%Y %H:%M:%S')
         LOG.append('%s - redirect %s' % (formatted_time, link))
         return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}})
 
@@ -66,18 +66,18 @@ def debrid():
     
     # Envoi de la requête GET avec paramètres
     try:
-        formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
+        formatted_time = datetime.fromtimestamp(now).strftime('%d-%m-%Y %H:%M:%S')
         LOG.append('%s - %s' % (formatted_time, apikey))
         response = requests.get(url, params=params)
         if any(error in response.text for error in ["AUTH_USER_BANNED", "AUTH_BAD_APIKEY", "MUST_BE_PREMIUM"]):
             formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
-            LOG.append('%s - %s -> %S' % (formatted_time, apikey, response.text))
+            LOG.append('%s - %s -> %s' % (formatted_time, apikey, response.text))
             return debrid()  # réessaie avec une autre clé
         API_KEYS.append(apikey)    # on replace la key à la fin car elle est toujours valide
         data = response.json()
     except Exception as e:
         API_KEYS.append(apikey)
-        formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
+        formatted_time = datetime.fromtimestamp(now).strftime('%d-%m-%Y %H:%M:%S')
         LOG.append('%s -> %s' % (formatted_time, str(e)))
         return jsonify({"status": "error", "message": str(e)})
 
