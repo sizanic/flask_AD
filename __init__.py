@@ -30,7 +30,7 @@ last_request_time = time.time()
    
 @app.route('/')
 def hello_world():
-    return "<br>".join(LOG)
+    return "LOG du %s<br><br>%s" % (datetime.fromtimestamp(now).strftime('%d-%m-%Y %H:%M:%S'), "<br>".join(LOG))
 
     #render_template('hello.html')
 
