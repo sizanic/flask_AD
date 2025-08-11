@@ -24,7 +24,7 @@ API_KEYS = deque([
     "XGzKz01VojTqCIina2km",        # shansblock      // OK  16/08/2025 01:57
     "JpldxPIQ8ng7camNNH3n"         # sizanic         // OK  28/08/2025 21:36
 ])
-last_request_time = time.time()
+last_request_time = 0
 
 
    
@@ -55,7 +55,7 @@ def debrid():
         formatted_now = datetime.fromtimestamp(now).strftime('%H:%M:%S')
         formatted_new = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
         LOG.append('last %s - now %s - new %s - sleep %d' % (formatted_last, formatted_now, formatted_new, last_request_time - now))
-        time.sleep( last_request_time - now)
+        time.sleep( int(last_request_time - now))
     else:
         last_request_time = now
 
