@@ -50,7 +50,11 @@ def debrid():
 
     time_per_key = 50 / len(API_KEYS)
     if now - last_request_time < time_per_key:
+        formatted_last = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
         last_request_time += time_per_key
+        formatted_now = datetime.fromtimestamp(now).strftime('%H:%M:%S')
+        formatted_new = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
+        LOG.append('last %s - now %s - new %s - sleep %d' % (formatted_last, formatted_now, formatted_new, last_request_time - now))
         time.sleep( last_request_time - now)
     else:
         last_request_time = now
