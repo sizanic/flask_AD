@@ -52,10 +52,12 @@ def debrid():
     if now - last_request_time < time_per_key:
         formatted_last = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
         last_request_time += time_per_key
+        pause = last_request_time - now
         formatted_now = datetime.fromtimestamp(now).strftime('%H:%M:%S')
         formatted_new = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
-        LOG.append('last %s - now %s - new %s - sleep %d' % (formatted_last, formatted_now, formatted_new, last_request_time - now))
-        time.sleep( int(last_request_time - now))
+        LOG.append('last %s - now %s - new %s - sleep %d' % (formatted_last, formatted_now, formatted_new, pause))
+        time.sleep(pause)
+        now = time.time()
     else:
         last_request_time = now
 
