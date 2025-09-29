@@ -20,7 +20,7 @@ LOG = deque()
 
 API_KEYS = deque([
     "9wHK4DK1NggY824vA7C0",        # shansblock      //   04/10/2025 23:40
-    "CGDxEacF7zmAeQhsmgIa",        # clyrkakenta     //   28/09/2025 00:17 (shanbox.izanic)
+   # "CGDxEacF7zmAeQhsmgIa",        # clyrkakenta     //   28/09/2025 00:17 (shanbox.izanic)
     "6iiLLTpise95LO4dLLtl",        # vPasteStream    //   06/01/2026 02:50
     "OhZ6OkVdAoKmvMBdkc01"         # sizanic         //   21/10/2025 17:14
 ])
@@ -79,7 +79,7 @@ def debrid():
         if any(error in response.text for error in ["AUTH_USER_BANNED", "AUTH_BAD_APIKEY", "MUST_BE_PREMIUM"]):
             formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
             LOG.append('%s - %s -> %s' % (formatted_time, apikey, response.text))
-            last_request_time = now  # pas besoin d'attendre pour tester la clé suivante
+            last_request_time = 0  # pas besoin d'attendre pour tester la clé suivante
             return debrid()  # réessaie avec une autre clé
         API_KEYS.append(apikey)    # on replace la key à la fin car elle est toujours valide
         data = response.json()
