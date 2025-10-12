@@ -75,7 +75,6 @@ def debrid():
     try:
         formatted_time = datetime.fromtimestamp(now).strftime('%d-%m-%Y %H:%M:%S')
         LOG.append('%s - %s' % (formatted_time, apikey))
-        LOG.append('IP - %s - %s' % (request.remote_addr, request.environ['REMOTE_ADDR']))
         response = requests.get(url, params=params)
         if any(error in response.text for error in ["AUTH_USER_BANNED", "AUTH_BAD_APIKEY", "MUST_BE_PREMIUM"]):
             formatted_time = datetime.fromtimestamp(now).strftime('%Y-%m-%d %H:%M:%S')
