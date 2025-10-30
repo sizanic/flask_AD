@@ -59,6 +59,7 @@ def debrid():
 
         # pause trop longue, on fait patienter quelques secondes mais on refuse
         if pause > 10:
+            last_request_time -= time_per_key
             smallPause = 8
             LOG.append('last %s - now %s - new %s - sleep %d ----  TIME_OUT' % (formatted_last, formatted_now, formatted_new, smallPause))
             time.sleep(smallPause)
