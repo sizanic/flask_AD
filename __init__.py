@@ -55,6 +55,13 @@ def debrid():
         pause = last_request_time - now
         formatted_now = datetime.fromtimestamp(now).strftime('%H:%M:%S')
         formatted_new = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
+
+        # pause trop longue, on fait patienter quelques secondes mais on refuse
+        if pause > 10:
+            LOG.append('last %s - now %s - new %s - sleep %d ----  TIME_OUT' % (formatted_last, formatted_now, formatted_new, pause))
+            time.sleep(8)
+            return jsonify({"status": "error", "error": {"code": "TIME_OUT", "message": "TIME_OUT"}})
+
         LOG.append('last %s - now %s - new %s - sleep %d' % (formatted_last, formatted_now, formatted_new, pause))
         time.sleep(pause)
         now = time.time()
