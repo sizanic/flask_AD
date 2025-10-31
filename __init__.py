@@ -21,7 +21,7 @@ LOG = deque()
 API_KEYS = deque([
     "ndOoqzCiVOcgpqVGKyJd",        # iosShanStream   //   29/11/2025 20:05
     "p7mfrhXOVNN4g8mivKVT",        # shansblock      //   04/11/2025 20:23
-    "lASTGqzZIMY1DCcrZHGv",        # clyrkakenta     //   22/11/2025 21:45 (shanbox.izanic)
+    "IS9WLZmrwpzbWkNZWVF2",        # clyrkakenta     //   22/11/2025 21:45 (shanbox.izanic)
     "u9QTPP3YBkGbk5gWh5Bp",        # vPasteStream    //   06/01/2026 02:50
     "wrYcQR5JqGBpXORjC97f"         # sizanic         //   21/11/2025 15:51
 ])
@@ -63,7 +63,7 @@ def debrid():
             smallPause = 8
             LOG.append('last %s - now %s - new %s - sleep %d ----  TIME_OUT' % (formatted_last, formatted_now, formatted_new, smallPause))
             time.sleep(smallPause)
-            return jsonify({"status": "error", "error": {"code": "TIME_OUT", "message": "TIME_OUT"}})
+            return jsonify({"status": "error", "error": {"code": "TIME_OUT", "message": "DELAI DEPASSE, RETENTEZ"}})
 
         LOG.append('last %s - now %s - new %s - sleep %d' % (formatted_last, formatted_now, formatted_new, pause))
         time.sleep(pause)
