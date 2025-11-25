@@ -22,7 +22,7 @@ API_KEYS = deque([
     "vn8xkCa3XVjcHxXODJ2p",         # sizanic         //   22/12/2025 21:45
     "ndOoqzCiVOcgpqVGKyJd",        # iosShanStream    //   29/11/2025 20:05
     "kIOtIOjXprBio02AYyoP",        # shansblock       //   23/12/2025 19:50
-    "Lxwlm7BcTGOSzdnTmHAp",        # clyrkakenta      //   22/11/2025 21:45 (shanbox.izanic)
+    "OCyNEiBTGmeA6l7Z0OOy",        # clyrkakenta      //   25/12/2025 21:11 (shanbox.izanic)
     "oUKECktEEVOYvktQtgVR"        # vPasteStream      //   06/01/2026 02:50
 ])
 last_request_time = 0
@@ -49,7 +49,7 @@ def debrid():
         LOG.append('%s - redirect %s' % (formatted_time, link))
         return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}})
 
-    time_per_key = 61 / len(API_KEYS)
+    time_per_key = 65 / len(API_KEYS)
     if now - last_request_time < time_per_key:
         formatted_last = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
         last_request_time += time_per_key
