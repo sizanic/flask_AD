@@ -19,11 +19,12 @@ app = Flask(__name__)
 LOG = deque()
 
 API_KEYS = deque([
-    "q8e0wKKnJkszNwWFnuty",         # sizanic         //   22/12/2025 21:45
+    "hXAirgMWxsJvvcBmof2B",        # sizanic          //   22/12/2025 21:45
+    "vBu24SGgXRPyHLi39Y5W",        # sizanicinfo      //   30/12/2025 20:58
     "ndOoqzCiVOcgpqVGKyJd",        # iosShanStream    //   30/12/2025 03:18
     "CnFtwZ4yRMIPzgpe56ph",        # shansblock       //   23/12/2025 19:50
     "V8RSSlY1k6XfGshVvwnf",        # clyrkakenta      //   25/12/2025 21:11 (shanbox.izanic)
-    "RTMIFkiemdbZwn1aue3s"        # vPasteStream      //   06/01/2026 02:50
+    "RTMIFkiemdbZwn1aue3s"         # vPasteStream     //   06/01/2026 02:50
 ])
 last_request_time = 0
 
@@ -49,7 +50,7 @@ def debrid():
         LOG.append('%s - redirect %s' % (formatted_time, link))
         return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}})
 
-    time_per_key = 65 / len(API_KEYS)
+    time_per_key = 70 / len(API_KEYS)
     if now - last_request_time < time_per_key:
         formatted_last = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
         last_request_time += time_per_key
