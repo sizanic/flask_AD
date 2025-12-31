@@ -23,7 +23,7 @@ API_KEYS = deque([
     "HRfT6I5Pv6wBkg2mDL6L",        # sizanicinfo      //   30/12/2025 20:58
     "tFcVgFnyeDyquqBCCNyt",        # iosShanStream    //   30/12/2025 03:18
     "Xsumrzgten0WxQc2fxbv",        # shansblock       //   23/12/2025 19:50
-    "4LN755RAOatwrr2Q3a2c",        # clyrkakenta      //   25/12/2025 21:11 (shanbox.izanic)
+    "4LN755RAOatwrr2Q3a2c",        # clyrkakenta      //   30/01/2026 03:33 (shanbox.izanic)
     "8vP3QwZlKshsMmPmj1HL"         # vPasteStream     //   06/01/2026 02:50
 ])
 last_request_time = 0
