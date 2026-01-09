@@ -19,7 +19,7 @@ app = Flask(__name__)
 LOG = deque()
 
 API_KEYS = deque([
-    "u9iEKqDA02OZzLj5OhVh",        # sizanic          //   25/01/2026 21:29
+    "VW1EHdydAmFwcEKntsfZ",        # sizanic          //   25/01/2026 21:29
     #"HRfT6I5Pv6wBkg2mDL6L",        # sizanicinfo      //   30/12/2025 20:58
     "tFcVgFnyeDyquqBCCNyt",        # iosShanStream    //   31/01/2026 19:38
     #"Xsumrzgten0WxQc2fxbv",        # shansblock       //   23/12/2025 19:50
