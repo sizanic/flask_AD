@@ -21,7 +21,7 @@ LOG = deque()
 API_KEYS = deque([
     #"j3652rpWbKADRK94JVkq",        # sizanic          //   25/01/2026 21:29
     "f0SZyAaITEFvp4uAR0dc",        # sizanicinfo      //   12/04/2026 04:27
-    "rXRKYKuaZ8nZ2SoVHFBq",        # iosShanStream    //   11/04/2026 21:54
+    "P2yBJn4k44YoFaNKL4vt",        # iosShanStream    //   11/04/2026 21:54
     "QNTECNYid2GuIfysK1AD",        # shansblock       //   01/05/2026 23:34
     "0IcRHGJMTgoE9fNfSmC7",        # clyrkakenta      //   08/04/2026 17:14 (shanbox.izanic)
     "JbqXVT2XGm9LKNAV61b5"         # vPasteStream     //   11/04/2026 21:55
