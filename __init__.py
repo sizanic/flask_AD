@@ -50,7 +50,7 @@ def debrid():
         LOG.append('%s - redirect %s' % (formatted_time, link))
         return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}})
 
-    time_per_key = 70 / len(API_KEYS)
+    time_per_key = 90 / len(API_KEYS)
     if now - last_request_time < time_per_key:
         formatted_last = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
         last_request_time += time_per_key
