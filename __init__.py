@@ -19,12 +19,12 @@ app = Flask(__name__)
 LOG = deque()
 
 API_KEYS = deque([
-    "XFgFME7FZNMAfjPOI4KM",        # sizanic          //   11/05/2026 20:16
+#    "hw3pNUoM5hxvK2YFSuse",        # shansblock       //   01/05/2026 23:34
     "hF5gbtRyCjd0oMefiAcT",        # sizanicinfo      //   13/05/2026 19:47
-    "wRWKfRcKZqvVOt0mcGiJ",        # iosShanStream    //   11/05/2026 21:54
-    "hw3pNUoM5hxvK2YFSuse",        # shansblock       //   01/05/2026 23:34
-    "tVUW8unrDVvJbMxl2VuT",        # clyrkakenta      //   11/05/2026 20:18 (shanbox.izanic)
-    "hOu4Sv8mnQtZOHqfKvpi"         # vPasteStream     //   13/05/2026 19:44
+    "XFgFME7FZNMAfjPOI4KM",        # sizanic          //   10/06/2026 20:16
+    "wRWKfRcKZqvVOt0mcGiJ",        # iosShanStream    //   10/06/2026 21:54
+    "hOu4Sv8mnQtZOHqfKvpi",        # vPasteStream     //   12/06/2026 19:44
+    "tVUW8unrDVvJbMxl2VuT"         # clyrkakenta      //   20/06/2026 20:18 (shanbox.izanic)
 ])
 last_request_time = 0
 
@@ -37,7 +37,7 @@ def hello_world():
 
     #render_template('hello.html')
 
-# /debrid?apikey=%s&link=%s
+# /debrid?link=%s
 @app.route('/debrid', methods=['GET'])
 def debrid():
     global last_request_time
