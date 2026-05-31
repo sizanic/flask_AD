@@ -55,7 +55,7 @@ def debrid():
     if nbKeys == 0:
         formatted_time = datetime.fromtimestamp(now).strftime('%d-%m-%Y %H:%M:%S')
         LOG.append('%s - MAINTENANCE - %s' % (formatted_time, link))
-        return jsonify({"status": "success", "data": {"link": "https://as2.ftcdn.net/v2/jpg/05/42/64/81/500_F_542648119_VplHZLn9Ol42DEGVlI1oMXDLEfcVUOcc.jpg"}})
+        return jsonify({"status": "success", "data": {"link": "https://static.videezy.com/system/resources/previews/000/031/424/original/4k-work-in-progess-background-loop.mp4"}})
         #maintenanceLink = "{\r\n\"status\": \"success\",\"data\": {\"link\": \"https://m180.uqload.to/3rfkylnlsvw2q4drdixpvmpzaj7latuu54kcvhrlxt24vbgirjuu6gtblnmq/v.mp4|Referer=https://uqload.to/\"}}";
         
     time_per_key = 90 / nbKeys
