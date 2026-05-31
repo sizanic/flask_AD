@@ -50,7 +50,15 @@ def debrid():
         LOG.append('%s - redirect %s' % (formatted_time, link))
         return jsonify({"status": "error", "error": {"code": "LINK_HOST_NOT_SUPPORTED", "message": "LINK_HOST_NOT_SUPPORTED"}})
 
-    time_per_key = 90 / len(API_KEYS)
+    # plus de key disponible
+    nbKeys = len(API_KEYS)
+    if nbKeys == 0:
+        formatted_time = datetime.fromtimestamp(now).strftime('%d-%m-%Y %H:%M:%S')
+        LOG.append('%s - MAINTENANCE - %s' % (formatted_time, link))
+        return jsonify({"status": "success", "data": {"link": "https://as2.ftcdn.net/v2/jpg/05/42/64/81/500_F_542648119_VplHZLn9Ol42DEGVlI1oMXDLEfcVUOcc.jpg"}})
+        #maintenanceLink = "{\r\n\"status\": \"success\",\"data\": {\"link\": \"https://m180.uqload.to/3rfkylnlsvw2q4drdixpvmpzaj7latuu54kcvhrlxt24vbgirjuu6gtblnmq/v.mp4|Referer=https://uqload.to/\"}}";
+        
+    time_per_key = 90 / nbKeys
     if now - last_request_time < time_per_key:
         formatted_last = datetime.fromtimestamp(last_request_time).strftime('%H:%M:%S')
         last_request_time += time_per_key
