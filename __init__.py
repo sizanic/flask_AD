@@ -20,11 +20,11 @@ LOG = deque()
 
 API_KEYS = deque([
 #    "hw3pNUoM5hxvK2YFSuse",        # shansblock       //   01/05/2026 23:34
-    "hF5gbtRyCjd0oMefiAcT",        # sizanicinfo      //   13/05/2026 19:47
-    "XFgFME7FZNMAfjPOI4KM",        # sizanic          //   10/06/2026 20:16
-    "wRWKfRcKZqvVOt0mcGiJ",        # iosShanStream    //   10/06/2026 21:54
-    "hOu4Sv8mnQtZOHqfKvpi",        # vPasteStream     //   12/06/2026 19:44
-    "tVUW8unrDVvJbMxl2VuT"         # clyrkakenta      //   20/06/2026 20:18 (shanbox.izanic)
+#    "hF5gbtRyCjd0oMefiAcT",        # sizanicinfo      //   13/05/2026 19:47
+    "ufAbfcNy3LW7MpM8Q6FD",        # sizanic          //   10/06/2026 20:16
+    "aQP9tvbIUtUkZMbVuskP",        # iosShanStream    //   10/06/2026 21:54
+    "pYeb4v2zvtrP1k2zZjUT",        # vPasteStream     //   12/06/2026 19:44
+    "sPeoUUbhVf93TTg3p3bO"         # clyrkakenta      //   20/06/2026 20:18 (shanbox.izanic)
 ])
 last_request_time = 0
 
