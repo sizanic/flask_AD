@@ -22,20 +22,18 @@ API_KEYS = deque([
     "hw3pNUoM5hxvK2YFSuse",        # shansblock       //   07/07/2026 01:29
     "hF5gbtRyCjd0oMefiAcT",        # sizanicinfo      //   07/07/2026 01:21
     "ufAbfcNy3LW7MpM8Q6FD",        # sizanic          //   10/06/2026 20:16
-    "aQP9tvbIUtUkZMbVuskP",        # iosShanStream    //   10/06/2026 21:54
+    "demdytLdC88OrnOFkAdY",        # iosShanStream    //   10/06/2026 21:54
     "pYeb4v2zvtrP1k2zZjUT",        # vPasteStream     //   12/06/2026 19:44
-    "sPeoUUbhVf93TTg3p3bO"         # clyrkakenta      //   20/06/2026 20:18 (shanbox.iza)
+    "IyQcOnYy23RHbJU6XUH7"         # clyrkakenta      //   20/06/2026 20:18 (shanbox.iza)
 ])
 last_request_time = 0
-
 
    
 @app.route('/')
 def hello_world():
     now = time.time()
     return "LOG du %s<br><br>%s" % (datetime.fromtimestamp(now).strftime('%d-%m-%Y %H:%M:%S'), "<br>".join(LOG))
-
-    #render_template('hello.html')
+#render_template('hello.html')
 
 # /debrid?link=%s
 @app.route('/debrid', methods=['GET'])
