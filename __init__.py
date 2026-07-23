@@ -3,7 +3,6 @@ import time, requests
 from collections import deque
 from datetime import datetime
 
-
 # parametrage serveur Alwaysdata
 # Configuration avancée
 # Paramètres supplémentaires uWSGI
@@ -12,7 +11,6 @@ from datetime import datetime
 
 # flask_AD/env/pyvenv.cfg
 # include_system_site_packages = true
-
 
 app = Flask(__name__)                                                                                                                  
 
@@ -39,7 +37,6 @@ def hello_world():
 @app.route('/debrid', methods=['GET'])
 def debrid():
     global last_request_time
-    #apikey = request.args.get('apikey')
     link = request.args.get('link')
 
     now = time.time()
